@@ -40,7 +40,13 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>co.com.reserva.vuelos.entities.Person</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.Pasajero</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.Aeropuerto</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.Avion</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.Reserva</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.Ruta</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.TipoIdentificacion</beans:value>
+				<beans:value>co.com.reserva.vuelos.entities.Vuelo</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -52,11 +58,11 @@
 		</beans:property>
 	</beans:bean>
 	
-	<beans:bean id="personDAO" class="co.com.reserva.vuelos.dao.PersonDAOImpl">
+	<beans:bean id="genericDAO" class="co.com.reserva.vuelos.dao.impl.GenericDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="personService" class="co.com.reserva.vuelos.service.PersonServiceImpl">
-		<beans:property name="personDAO" ref="personDAO"></beans:property>
+	<beans:bean id="genericService" class="co.com.reserva.vuelos.service.impl.GenericServiceImpl">
+		<beans:property name="genericDAO" ref="genericDAO"></beans:property>
 	</beans:bean>
 	<context:component-scan base-package="co.com.reserva.vuelos.controller" />
 	

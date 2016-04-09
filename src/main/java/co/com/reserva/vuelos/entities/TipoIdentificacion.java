@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="tipos_identificaciones")
-@NamedQuery(name="TiposIdentificacione.findAll", query="SELECT t FROM TiposIdentificacione t")
+@NamedQuery(name="TiposIdentificacione.findAll", query="SELECT t FROM TipoIdentificacion t")
 public class TipoIdentificacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -39,4 +39,9 @@ public class TipoIdentificacion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+	    return this.getDescripcion();
+	}
+	
 }

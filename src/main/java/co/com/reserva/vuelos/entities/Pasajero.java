@@ -17,6 +17,10 @@ public class Pasajero implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
+	
+	@Column(name="identificacion", unique=true)
 	private String identificacion;
 
 	@Column(name="nombre_completo")
@@ -97,6 +101,14 @@ public class Pasajero implements Serializable {
 		reserva.setPasajeroBean(null);
 
 		return reserva;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

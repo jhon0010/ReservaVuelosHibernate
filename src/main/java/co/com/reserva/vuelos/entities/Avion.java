@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="aviones")
-@NamedQuery(name="Avione.findAll", query="SELECT a FROM Avione a")
+@NamedQuery(name="Avione.findAll", query="SELECT a FROM Avion a")
 public class Avion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
