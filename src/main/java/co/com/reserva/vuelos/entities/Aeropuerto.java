@@ -24,8 +24,12 @@ public class Aeropuerto implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Ruta
-	@OneToMany(mappedBy="aeropuerto")
+	@OneToMany(mappedBy="aeropuertoOrigen")
 	private List<Ruta> rutas;
+	
+	//bi-directional many-to-one association to Ruta
+	@OneToMany(mappedBy="aeropuertoDestino")
+	private List<Ruta> rutas2;
 
 	public Aeropuerto() {
 	}
@@ -64,16 +68,29 @@ public class Aeropuerto implements Serializable {
 
 	public Ruta addRuta(Ruta ruta) {
 		getRutas().add(ruta);
-		ruta.setAeropuerto(this);
+		ruta.setAeropuertoOrigen(this);
 
 		return ruta;
 	}
 
 	public Ruta removeRuta(Ruta ruta) {
 		getRutas().remove(ruta);
-		ruta.setAeropuerto(null);
+		ruta.setAeropuertoOrigen(null);
 
 		return ruta;
+	}
+	
+	public List<Ruta> getRutas2() {
+		return rutas2;
+	}
+
+	public void setRutas2(List<Ruta> rutas2) {
+		this.rutas2 = rutas2;
+	}
+
+	@Override
+	public String toString() {
+	    return this.getNombre();
 	}
 
 }

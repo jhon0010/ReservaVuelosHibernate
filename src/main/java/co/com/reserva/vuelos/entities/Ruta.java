@@ -1,8 +1,16 @@
 package co.com.reserva.vuelos.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -18,13 +26,17 @@ public class Ruta implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name="aeropuerto_destino")
-	private BigDecimal aeropuertoDestino;
+	@ManyToOne
+	@JoinColumn(name="aeropuerto_destino")
+	private Aeropuerto aeropuertoDestino;
 
 	//bi-directional many-to-one association to Aeropuerto
 	@ManyToOne
 	@JoinColumn(name="aeropuerto_origen")
-	private Aeropuerto aeropuerto;
+	private Aeropuerto aeropuertoOrigen;
+	
+	@OneToMany(mappedBy="rutaCumplir")
+	private List<Vuelo> vuelosAsociado;
 
 	public Ruta() {
 	}
@@ -37,20 +49,28 @@ public class Ruta implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getAeropuertoDestino() {
-		return this.aeropuertoDestino;
+	public Aeropuerto getAeropuertoOrigen() {
+		return aeropuertoOrigen;
 	}
 
-	public void setAeropuertoDestino(BigDecimal aeropuertoDestino) {
+	public void setAeropuertoOrigen(Aeropuerto aeropuertoOrigen) {
+		this.aeropuertoOrigen = aeropuertoOrigen;
+	}
+
+	public Aeropuerto getAeropuertoDestino() {
+		return aeropuertoDestino;
+	}
+
+	public void setAeropuertoDestino(Aeropuerto aeropuertoDestino) {
 		this.aeropuertoDestino = aeropuertoDestino;
 	}
 
-	public Aeropuerto getAeropuerto() {
-		return this.aeropuerto;
-	}
-
-	public void setAeropuerto(Aeropuerto aeropuerto) {
-		this.aeropuerto = aeropuerto;
+	/**
+	 * Sobreescribimos el metodo toString
+	 */
+	@Override
+	public String toString(){
+		return aeropuertoOrigen.getNombre().concat(" -\n hasta \n - ").concat(aeropuertoDestino.getNombre());
 	}
 
 }

@@ -10,17 +10,29 @@ import org.springframework.stereotype.Repository;
 
 import co.com.reserva.vuelos.dao.GenericDAO;
 
+/**
+ * Implementacion de las consultas genericas
+ * @author jhon
+ *
+ */
 @Repository
 public class GenericDAOImpl implements GenericDAO {
 	
 	private static final Logger logger = LoggerFactory.getLogger(GenericDAOImpl.class);
-
 	private SessionFactory sessionFactory;
 	
+	/**
+	 * Metodo para la inyeccion del sessionFactory
+	 * @param sf
+	 */
 	public void setSessionFactory(SessionFactory sf){
 		this.sessionFactory = sf;
 	}
 
+	/**
+	 * Metodo que permite agregar un objeto de las entidades
+	 * @param Object o entidad a persistir
+	 */
 	@Override
 	public void add(Object o) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -28,6 +40,10 @@ public class GenericDAOImpl implements GenericDAO {
 		logger.info(o.getClass() + " saved successfully");
 	}
 
+	/**
+	 * Metodo que permite actualizar un objeto de las entidades
+	 * @param Object o entidad a persistir
+	 */
 	@Override
 	public void update(Object o) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -35,6 +51,10 @@ public class GenericDAOImpl implements GenericDAO {
 		logger.info(o.getClass() + " updated successfully");
 	}
 
+	/**
+	 * Metodo que permite listar todos los objetos de un tipo de las entidades
+	 * @param c class clase a la cual se el hara la consulta
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> listAll(Class<?> c) {
@@ -47,6 +67,11 @@ public class GenericDAOImpl implements GenericDAO {
 		return list;
 	}
 
+	/**
+	 * Metodo que permite obtener un objeto  entidade mediante su id
+	 * @param c class clase a la cual se el hara la consulta
+	 * @param id identificador del objeto
+	 */
 	@Override
 	public Object getById(long id, Class<?> c) {
 		Session session = this.sessionFactory.getCurrentSession();		
@@ -55,6 +80,11 @@ public class GenericDAOImpl implements GenericDAO {
 		return o;
 	}
 
+	/**
+	 * Metodo que permite eliminar un objeto  entidad mediante su id
+	 * @param c class clase a la cual se el hara la consulta
+	 * @param id identificador del objeto
+	 */
 	@Override
 	public void remove(long id, Class<?> c) {
 		Session session = this.sessionFactory.getCurrentSession();

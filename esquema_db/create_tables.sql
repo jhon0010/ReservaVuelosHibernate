@@ -33,6 +33,9 @@ CREATE TABLE public.ruta
   aeropuerto_destino integer,
   CONSTRAINT fk_ruta_aeropuertos FOREIGN KEY (aeropuerto_origen)
       REFERENCES public.aeropuertos (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_ruta_aeropuertos_destino FOREIGN KEY (aeropuerto_destino)
+      REFERENCES public.aeropuertos (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 

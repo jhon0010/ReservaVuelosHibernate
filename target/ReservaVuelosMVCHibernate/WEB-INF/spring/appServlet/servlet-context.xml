@@ -58,12 +58,6 @@
 		</beans:property>
 	</beans:bean>
 	
-	<beans:bean id="genericDAO" class="co.com.reserva.vuelos.dao.impl.GenericDAOImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
-	<beans:bean id="genericService" class="co.com.reserva.vuelos.service.impl.GenericServiceImpl">
-		<beans:property name="genericDAO" ref="genericDAO"></beans:property>
-	</beans:bean>
 	<context:component-scan base-package="co.com.reserva.vuelos.controller" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
@@ -72,5 +66,18 @@
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 
+	<beans:bean id="genericDAO" class="co.com.reserva.vuelos.dao.impl.GenericDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="genericService" class="co.com.reserva.vuelos.service.impl.GenericServiceImpl">
+		<beans:property name="genericDAO" ref="genericDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="reservaVuelosDAO" class="co.com.reserva.vuelos.dao.impl.ReservaVuelosDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="reservaVuelosService" class="co.com.reserva.vuelos.service.impl.ReservaVuelosServiceImpl">
+		<beans:property name="reservaVuelosDAO" ref="reservaVuelosDAO"></beans:property>
+	</beans:bean>
 
 </beans:beans>

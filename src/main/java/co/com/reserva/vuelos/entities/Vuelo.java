@@ -1,10 +1,20 @@
 package co.com.reserva.vuelos.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -21,13 +31,16 @@ public class Vuelo implements Serializable {
 	private long id;
 
 	@Column(name="fecha_arribo_estimada")
-	private Timestamp fechaArriboEstimada;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaArriboEstimada;
 
 	@Column(name="fecha_salida")
-	private Timestamp fechaSalida;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaSalida;
 
-	@Column(name="ruta_a_cumplir")
-	private BigDecimal rutaACumplir;
+	@ManyToOne
+	@JoinColumn(name="ruta_a_cumplir")
+	private Ruta rutaCumplir;
 
 	//bi-directional many-to-one association to Reserva
 	@OneToMany(mappedBy="vueloBean")
@@ -36,7 +49,7 @@ public class Vuelo implements Serializable {
 	//bi-directional many-to-one association to Avione
 	@ManyToOne
 	@JoinColumn(name="avion")
-	private Avion avione;
+	private Avion avion;
 
 	public Vuelo() {
 	}
@@ -49,28 +62,20 @@ public class Vuelo implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getFechaArriboEstimada() {
-		return this.fechaArriboEstimada;
+	public Date getFechaArriboEstimada() {
+		return fechaArriboEstimada;
 	}
 
-	public void setFechaArriboEstimada(Timestamp fechaArriboEstimada) {
+	public void setFechaArriboEstimada(Date fechaArriboEstimada) {
 		this.fechaArriboEstimada = fechaArriboEstimada;
 	}
 
-	public Timestamp getFechaSalida() {
-		return this.fechaSalida;
+	public Date getFechaSalida() {
+		return fechaSalida;
 	}
 
-	public void setFechaSalida(Timestamp fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
-	}
-
-	public BigDecimal getRutaACumplir() {
-		return this.rutaACumplir;
-	}
-
-	public void setRutaACumplir(BigDecimal rutaACumplir) {
-		this.rutaACumplir = rutaACumplir;
 	}
 
 	public List<Reserva> getReservas() {
@@ -95,12 +100,20 @@ public class Vuelo implements Serializable {
 		return reserva;
 	}
 
-	public Avion getAvione() {
-		return this.avione;
+	public Avion getAvion() {
+		return this.avion;
 	}
 
-	public void setAvione(Avion avione) {
-		this.avione = avione;
+	public void setAvion(Avion avion) {
+		this.avion = avion;
+	}
+
+	public Ruta getRutaCumplir() {
+		return rutaCumplir;
+	}
+
+	public void setRutaCumplir(Ruta rutaCumplir) {
+		this.rutaCumplir = rutaCumplir;
 	}
 
 }

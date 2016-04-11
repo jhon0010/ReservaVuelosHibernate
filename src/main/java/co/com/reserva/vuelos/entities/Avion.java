@@ -27,7 +27,7 @@ public class Avion implements Serializable {
 	private String modelo;
 
 	//bi-directional many-to-one association to Vuelo
-	@OneToMany(mappedBy="avione")
+	@OneToMany(mappedBy="avion")
 	private List<Vuelo> vuelos;
 
 	public Avion() {
@@ -75,16 +75,24 @@ public class Avion implements Serializable {
 
 	public Vuelo addVuelo(Vuelo vuelo) {
 		getVuelos().add(vuelo);
-		vuelo.setAvione(this);
+		vuelo.setAvion(this);
 
 		return vuelo;
 	}
 
 	public Vuelo removeVuelo(Vuelo vuelo) {
 		getVuelos().remove(vuelo);
-		vuelo.setAvione(null);
+		vuelo.setAvion(null);
 
 		return vuelo;
+	}
+	
+	/**
+	 * Permite mostrar una cadena en representación del objeto
+	 */
+	public String toString(){
+		
+		return this.getModelo().concat(" - ").concat(this.getFabricante());
 	}
 
 }

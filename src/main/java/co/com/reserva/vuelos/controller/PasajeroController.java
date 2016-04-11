@@ -1,8 +1,6 @@
 package co.com.reserva.vuelos.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +17,13 @@ import co.com.reserva.vuelos.entities.Pasajero;
 import co.com.reserva.vuelos.entities.TipoIdentificacion;
 import co.com.reserva.vuelos.service.GenericService;
 
+/**
+ * Clase encargarda de controlar las peticiones
+ * que viajan desde le navegador a las paginas 
+ * y manipular los datos hacia la vista y backend
+ * @author jhon
+ *
+ */
 @Controller
 public class PasajeroController {
 	

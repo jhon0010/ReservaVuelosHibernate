@@ -2,6 +2,12 @@ package co.com.reserva.vuelos.service;
 
 import java.util.List;
 
+/**
+ * Servicio que se encarga de exponer los metodos escenciales del CRUD
+ * para las entidades
+ * @author jhon
+ *
+ */
 public interface GenericService {
 
 	public void add(Object o);
