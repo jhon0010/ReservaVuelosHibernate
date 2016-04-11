@@ -51,6 +51,7 @@ CREATE TABLE public.vuelo
   id SERIAL PRIMARY KEY,
   ruta_a_cumplir integer,
   avion integer,
+  asientos_ocupados,
   fecha_salida timestamp without time zone,
   fecha_arribo_estimada timestamp without time zone,
   CONSTRAINT fk_vuelo_aviones FOREIGN KEY (avion)
@@ -62,6 +63,7 @@ CREATE TABLE public.reserva
 (
   id SERIAL PRIMARY KEY,
   pasajero integer,
+  asientos_reservados integer;
   vuelo integer,
   CONSTRAINT fk_reserva_pasajeros FOREIGN KEY (pasajero)
       REFERENCES public.pasajeros (id) MATCH SIMPLE

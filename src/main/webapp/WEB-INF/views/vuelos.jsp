@@ -18,7 +18,12 @@
 </h1>
 
 <c:url var="addAction" value="/vuelo/add" ></c:url>
-
+<a href="/ReservaVuelosMVCHibernate/">Pasajeros</a>
+<a href="/ReservaVuelosMVCHibernate/reportes">Reporte</a>
+<a href="/ReservaVuelosMVCHibernate/aviones">Aviones</a>
+<a href="/ReservaVuelosMVCHibernate/reservas">Reservas</a>
+<a href="/ReservaVuelosMVCHibernate/rutas">Rutas</a>
+<a href="/ReservaVuelosMVCHibernate/vuelos">Vuelos</a>
 <form:form action="${addAction}" commandName="vuelo">
 
 <h1 style="color:red;">${error}</h1>

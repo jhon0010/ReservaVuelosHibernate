@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,6 +31,10 @@ public class Vuelo implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
+	
+	@Column(name="asientos_ocupados")
+	private int asientosOcupados;
+	
 	@Column(name="fecha_arribo_estimada")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaArriboEstimada;
@@ -43,7 +48,7 @@ public class Vuelo implements Serializable {
 	private Ruta rutaCumplir;
 
 	//bi-directional many-to-one association to Reserva
-	@OneToMany(mappedBy="vueloBean")
+	@OneToMany(mappedBy="vuelo", fetch = FetchType.EAGER)
 	private List<Reserva> reservas;
 
 	//bi-directional many-to-one association to Avione
@@ -88,14 +93,14 @@ public class Vuelo implements Serializable {
 
 	public Reserva addReserva(Reserva reserva) {
 		getReservas().add(reserva);
-		reserva.setVueloBean(this);
+		reserva.setVuelo(this);
 
 		return reserva;
 	}
 
 	public Reserva removeReserva(Reserva reserva) {
 		getReservas().remove(reserva);
-		reserva.setVueloBean(null);
+		reserva.setVuelo(null);
 
 		return reserva;
 	}
@@ -114,6 +119,22 @@ public class Vuelo implements Serializable {
 
 	public void setRutaCumplir(Ruta rutaCumplir) {
 		this.rutaCumplir = rutaCumplir;
+	}
+	
+	public int getAsientosOcupados() {
+		return asientosOcupados;
+	}
+
+	public void setAsientosOcupados(int asientosOcupados) {
+		this.asientosOcupados = asientosOcupados;
+	}
+
+	/**
+	 * Se sobrescribe toStirng 
+	 */
+	@Override
+	public String toString(){
+		return this.getRutaCumplir().toString().concat(" a las ").concat(this.getFechaSalida().toString());
 	}
 
 }

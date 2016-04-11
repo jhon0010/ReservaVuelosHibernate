@@ -20,12 +20,15 @@ public class Reserva implements Serializable {
 	//bi-directional many-to-one association to Pasajero
 	@ManyToOne
 	@JoinColumn(name="pasajero")
-	private Pasajero pasajeroBean;
+	private Pasajero pasajero;
+	
+	@Column(name="asientos_reservados")
+	private int asientosReservados;
 
 	//bi-directional many-to-one association to Vuelo
 	@ManyToOne
 	@JoinColumn(name="vuelo")
-	private Vuelo vueloBean;
+	private Vuelo vuelo;
 
 	public Reserva() {
 	}
@@ -38,20 +41,30 @@ public class Reserva implements Serializable {
 		this.id = id;
 	}
 
-	public Pasajero getPasajeroBean() {
-		return this.pasajeroBean;
+	public Pasajero getPasajero() {
+		return pasajero;
 	}
 
-	public void setPasajeroBean(Pasajero pasajeroBean) {
-		this.pasajeroBean = pasajeroBean;
+	public void setPasajero(Pasajero pasajero) {
+		this.pasajero = pasajero;
 	}
 
-	public Vuelo getVueloBean() {
-		return this.vueloBean;
+	public int getAsientosReservados() {
+		return asientosReservados;
 	}
 
-	public void setVueloBean(Vuelo vueloBean) {
-		this.vueloBean = vueloBean;
+	public void setAsientosReservados(int asientosReservados) {
+		this.asientosReservados = asientosReservados;
 	}
+
+	public Vuelo getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
+	}
+
+
 
 }

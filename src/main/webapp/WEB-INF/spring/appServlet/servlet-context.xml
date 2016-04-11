@@ -78,6 +78,7 @@
 	</beans:bean>
 	<beans:bean id="reservaVuelosService" class="co.com.reserva.vuelos.service.impl.ReservaVuelosServiceImpl">
 		<beans:property name="reservaVuelosDAO" ref="reservaVuelosDAO"></beans:property>
+		<beans:property name="genericDAO" ref="genericDAO"></beans:property>
 	</beans:bean>
 
 </beans:beans>

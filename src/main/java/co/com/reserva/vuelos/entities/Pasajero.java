@@ -35,7 +35,7 @@ public class Pasajero implements Serializable {
 	private BigDecimal tipoIdentificacion;
 
 	//bi-directional many-to-one association to Reserva
-	@OneToMany(mappedBy="pasajeroBean")
+	@OneToMany(mappedBy="pasajero")
 	private List<Reserva> reservas;
 
 	public Pasajero() {
@@ -91,14 +91,14 @@ public class Pasajero implements Serializable {
 
 	public Reserva addReserva(Reserva reserva) {
 		getReservas().add(reserva);
-		reserva.setPasajeroBean(this);
+		reserva.setPasajero(this);
 
 		return reserva;
 	}
 
 	public Reserva removeReserva(Reserva reserva) {
 		getReservas().remove(reserva);
-		reserva.setPasajeroBean(null);
+		reserva.setPasajero(null);
 
 		return reserva;
 	}
@@ -109,6 +109,14 @@ public class Pasajero implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	/**
+	 * Se sobreescribe el metodo toString
+	 */
+	@Override
+	public String toString(){
+		return this.getNombreCompleto().concat(" - ").concat(this.getIdentificacion());
 	}
 
 }

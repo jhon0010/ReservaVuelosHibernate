@@ -36,7 +36,7 @@ public class PasajeroController {
 		this.genericService = gs;
 	}
 	
-	@RequestMapping(value = "/pasajeros", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String listAll(Model model) {
 
 		BigDecimal tipoId = new BigDecimal("0");		

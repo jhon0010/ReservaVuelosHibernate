@@ -8,5 +8,6 @@
 		<class>co.com.reserva.vuelos.entities.Ruta</class>
 		<class>co.com.reserva.vuelos.entities.TipoIdentificacion</class>
 		<class>co.com.reserva.vuelos.entities.Vuelo</class>
+	
 	</persistence-unit>
 </persistence>
